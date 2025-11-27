@@ -5,6 +5,7 @@ import (
 	"new-lang/lexer"
 	"os"
 	"log"
+	"io"
 )
 
 func main() {
@@ -16,6 +17,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
+	// ファイルの中を読み取る
+	content, err := io.ReadAll(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("pan.pan content: %s\n", string(content))
+
+	// ファイルとじる
 	defer file.Close()
 
 	// lexerを呼び出す
