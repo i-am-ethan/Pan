@@ -29,5 +29,7 @@ func main() {
 	defer file.Close()
 
 	// lexerを呼び出す
-	lexer.Lexer(string(content))
+	// lexer.Lexer(string(content))
+	lexer := lexer.NewLexer(string(content))
+	lexer.Process()
 }

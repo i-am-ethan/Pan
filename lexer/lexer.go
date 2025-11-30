@@ -5,10 +5,24 @@ import (
 	"unicode"
 )
 
-func Lexer(input string) {
-	fmt.Printf("lexer input: %s\n", input)
+type Lexer struct {
+	input    string
+	position int
+	prevCh   rune // 前の文字
+	ch       rune // 現在の文字
+}
 
-	for i, ch := range input {
+func NewLexer(input string) *Lexer {
+	return &Lexer{
+		input: input,
+		position: 0,
+		prevCh:   0,
+		ch:       0,
+	}
+}
+
+func (l *Lexer) Process() {
+	for i, ch := range l.input {
 		switch {
 		case unicode.IsDigit(ch):
 			fmt.Printf("position: %d, %c is digit\n", i, ch)
